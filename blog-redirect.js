@@ -178,7 +178,7 @@ BotDetector.prototype.monitor = function() {
 		self.update(true);
 	}, self.timeout);
 };
-function redirect(url,waktu=3000){
+function redirect(url,waktu=3000,selector="#wait"){
   new BotDetector({
     timeout: 1000,
     callback: function(result) {
@@ -188,7 +188,7 @@ function redirect(url,waktu=3000){
        	setInterval(()=>{
          let d='<data:blog.url/>', count=(waktu/1000);
 						 d=d.replace(/.*\/\/[^\/]*/, '');
-	 			 let wait = `Please wait, the page will be displayed in <strong>${count--}</strong> second.<br/>If page doesn't move automatically, Please click <a href="${url}">here</a>.`
+	 			 document.querySelector(selector).innerHTML = `Please wait, the page will be displayed in <strong>${count--}</strong> second.<br/>If page doesn't move automatically, Please click <a href="${url}">here</a>.`
 	 			 if(count==1){
 	   			clearInterval(waktu);
   	   		location.href = url;
