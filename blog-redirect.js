@@ -185,11 +185,11 @@ function redirect(url,waktu=3000,selector="#wait"){
       if (result.isBot) {
         window.dispatchEvent(new CustomEvent("botactivity"))
       } else {
+        let d='<data:blog.url/>', count=(waktu/1000);
+						d=d.replace(/.*\/\/[^\/]*/, '');
+				document.querySelector(selector).innerHTML = `Please wait, the page will be displayed in <strong>${count--}</strong> second.<br/>If page doesn't move automatically, Please click <a href="${url}">here</a>.`;
        	setInterval(()=>{
-         let d='<data:blog.url/>', count=(waktu/1000);
-						 d=d.replace(/.*\/\/[^\/]*/, '');
-	 			 document.querySelector(selector).innerHTML = `Please wait, the page will be displayed in <strong>${count--}</strong> second.<br/>If page doesn't move automatically, Please click <a href="${url}">here</a>.`
-	 			 if(count==1){
+				 if(count==1){
 	   			clearInterval(waktu);
   	   		location.href = url;
 	 			 }
